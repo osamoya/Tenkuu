@@ -11,7 +11,7 @@ class IMGset {
   int x=0;
   int y=0;
 }
-IMGset[] t=new IMGset[IMAGES_NUM];
+IMGset[] imgset=new IMGset[IMAGES_NUM];
 
 void setup() {
   size(540, 960);//the original size (1080,1920) is too large for laptopPC!
@@ -31,11 +31,11 @@ void draw() {
     i=0;
   }
 
-  image(t[i].img, 0, 0, width, height);
+  image(imgset[i].img, 0, 0, width, height);
 
-  if (t[i].check) {
+  if (imgset[i].check) {
     fill(0, 0, 0);
-    ellipse(t[i].x, t[i].y, r, r);
+    ellipse(imgset[i].x, imgset[i].y, r, r);
   }
   fill(0);
   text(GetImgName(i), 50, 50);
@@ -73,25 +73,25 @@ void keyReleased() {
 
 void mouseClicked() {
   ellipse(mouseX, mouseY, r, r);
-  t[i].x=mouseX;
-  t[i].y=mouseY;
-  t[i].check=true;
-  t[i].serial_num=i;
+  imgset[i].x=mouseX;
+  imgset[i].y=mouseY;
+  imgset[i].check=true;
+  imgset[i].serial_num=i;
   i++;
 }
 
 void PrintCSV() {
   println("Fin!");
   for (int j=0; j<IMAGES_NUM; j++) {
-    if (!t[j].check) {
+    if (!imgset[j].check) {
       output.close();
       exit();
     }
-    output.print(t[j].serial_num);
+    output.print(imgset[j].serial_num);
     output.print(",");
-    output.print(RATIO*t[j].x);
+    output.print(RATIO*imgset[j].x);
     output.print(",");
-    output.print(RATIO*t[j].y);
+    output.print(RATIO*imgset[j].y);
     output.print("\n");
   }
   output.close();
@@ -109,9 +109,9 @@ String GetImgName(int num) {
 
 void Loadimages() {
   for (int j=0; j<IMAGES_NUM; j++) {
-    t[j]=new IMGset();
-    t[j].serial_num=1;
-    t[j].img=loadImage(GetImgName(j));//load OK;
+    imgset[j]=new IMGset();
+    imgset[j].serial_num=1;
+    imgset[j].img=loadImage(GetImgName(j));//load OK;
     //println(GetImgName(j));
     if(j==1)println("....1%");
     if(j==  IMAGES_NUM/10)println("...10%");
