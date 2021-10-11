@@ -1,5 +1,5 @@
 PrintWriter output;
-final int MAX=111;//number of images
+final int IMAGES_NUM=111;//number of images
 final int RATIO=2;//view percent
 int i=0;
 int r=10;
@@ -10,20 +10,20 @@ class IMGset {
   int x=0;
   int y=0;
 }
-IMGset[] t=new IMGset[MAX];
+IMGset[] t=new IMGset[IMAGES_NUM];
 
 void setup() {
   size(540, 960);//the original size (1080,1920) is too large for laptopPC!
   println("Hello world!");
   output=createWriter("positions.csv");
-  Loadimages();//this use about MAX/10 second
+  Loadimages();//this use about IMAGES_NUM/10 second
 }
 
 void draw() {
 
-  if (i>=MAX) {
+  if (i>=IMAGES_NUM) {
     println("this is the last image!");
-    i=MAX-1;
+    i=IMAGES_NUM-1;
   }
   if(i<=0){
     println("this is the fast image!");
@@ -66,7 +66,7 @@ void keyReleased() {
   }
   println("i="+i);
   if (i<=0)i=0;
-  if (i>=MAX)i=MAX-1;
+  if (i>=IMAGES_NUM)i=IMAGES_NUM-1;
 }
 
 
@@ -81,7 +81,7 @@ void mouseClicked() {
 
 void GetCSV() {
   println("Fin!");
-  for (int j=0; j<MAX; j++) {
+  for (int j=0; j<IMAGES_NUM; j++) {
     if (!t[j].check) {
       output.close();
       exit();
@@ -107,22 +107,22 @@ String GetImgName(int num) {
 }
 
 void Loadimages() {
-  for (int j=0; j<MAX; j++) {
+  for (int j=0; j<IMAGES_NUM; j++) {
     t[j]=new IMGset();
     t[j].serial_num=1;
     t[j].img=loadImage(GetImgName(j));//load OK;
     //println(GetImgName(j));
     if(j==1)println("....1%");
-    if(j==  MAX/10)println("...10%");
-    if(j==2*MAX/10)println("...20%");
-    if(j==3*MAX/10)println("...30%");
-    if(j==4*MAX/10)println("...40%");
-    if(j==5*MAX/10)println("...50%");
-    if(j==6*MAX/10)println("...60%");
-    if(j==7*MAX/10)println("...70%");
-    if(j==8*MAX/10)println("...80%");
-    if(j==9*MAX/10)println("...90%");
-    if(j==  MAX-1)   println("..100%");
+    if(j==  IMAGES_NUM/10)println("...10%");
+    if(j==2*IMAGES_NUM/10)println("...20%");
+    if(j==3*IMAGES_NUM/10)println("...30%");
+    if(j==4*IMAGES_NUM/10)println("...40%");
+    if(j==5*IMAGES_NUM/10)println("...50%");
+    if(j==6*IMAGES_NUM/10)println("...60%");
+    if(j==7*IMAGES_NUM/10)println("...70%");
+    if(j==8*IMAGES_NUM/10)println("...80%");
+    if(j==9*IMAGES_NUM/10)println("...90%");
+    if(j==  IMAGES_NUM-1)   println("..100%");
     
   }
 }
