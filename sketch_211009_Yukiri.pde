@@ -2,7 +2,8 @@ PrintWriter output;
 final int IMAGES_NUM=111;//number of images
 final int RATIO=2;//view percent
 int i=0;
-int r=10;
+int r=10;//the radius of circle to display
+
 class IMGset {
   PImage img;
   int serial_num=-1;
@@ -45,7 +46,7 @@ void keyReleased() {
 
   switch(keyCode) {
   case ENTER://
-    GetCSV();
+    PrintCSV();
     break;
   case LEFT:
     println("left!");
@@ -79,7 +80,7 @@ void mouseClicked() {
   i++;
 }
 
-void GetCSV() {
+void PrintCSV() {
   println("Fin!");
   for (int j=0; j<IMAGES_NUM; j++) {
     if (!t[j].check) {
