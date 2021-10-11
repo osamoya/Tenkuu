@@ -26,7 +26,7 @@ void draw() {
     println("this is the last image!");
     i=IMAGES_NUM-1;
   }
-  if(i<=0){
+  if (i<=0) {
     println("this is the fast image!");
     i=0;
   }
@@ -109,21 +109,23 @@ String GetImgName(int num) {
 
 void Loadimages() {
   for (int j=0; j<IMAGES_NUM; j++) {
-    imgset[j]=new IMGset();
-    imgset[j].serial_num=1;
-    imgset[j].img=loadImage(GetImgName(j));//load OK;
-    //println(GetImgName(j));
-    if(j==1)println("....1%");
-    if(j==  IMAGES_NUM/10)println("...10%");
-    if(j==2*IMAGES_NUM/10)println("...20%");
-    if(j==3*IMAGES_NUM/10)println("...30%");
-    if(j==4*IMAGES_NUM/10)println("...40%");
-    if(j==5*IMAGES_NUM/10)println("...50%");
-    if(j==6*IMAGES_NUM/10)println("...60%");
-    if(j==7*IMAGES_NUM/10)println("...70%");
-    if(j==8*IMAGES_NUM/10)println("...80%");
-    if(j==9*IMAGES_NUM/10)println("...90%");
-    if(j==  IMAGES_NUM-1)   println("..100%");
-    
+    Loadimage(j);
+
+    if (j==1)println("....1%");
+    if (j==  IMAGES_NUM/10)println("...10%");
+    if (j==2*IMAGES_NUM/10)println("...20%");
+    if (j==3*IMAGES_NUM/10)println("...30%");
+    if (j==4*IMAGES_NUM/10)println("...40%");
+    if (j==5*IMAGES_NUM/10)println("...50%");
+    if (j==6*IMAGES_NUM/10)println("...60%");
+    if (j==7*IMAGES_NUM/10)println("...70%");
+    if (j==8*IMAGES_NUM/10)println("...80%");
+    if (j==9*IMAGES_NUM/10)println("...90%");
+    if (j==  IMAGES_NUM-1)   println("..100%");
   }
+}
+void Loadimage(int n) {
+  imgset[n]=new IMGset();
+  imgset[n].serial_num=1;
+  imgset[n].img=loadImage(GetImgName(n));
 }
