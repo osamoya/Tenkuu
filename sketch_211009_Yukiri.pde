@@ -1,8 +1,12 @@
 PrintWriter output;
+final String filename="positions.csv";
 final int IMAGES_NUM=3990;//number of images(3990)
 final int RATIO=2;//view percent
 int i=0;
 int r=10;//the radius of circle to display
+
+Table csv;
+int data_row;//=RETSU.
 
 class IMGset {
   PImage img=null;
@@ -24,13 +28,26 @@ PImage pimage;
 void setup() {
   size(540, 960);//the original size (1080,1920) is too large for laptopPC!
   println("Hello world!");
-  output=createWriter("positions.csv");
+  //output=createWriter("positions.csv");
+  csv=loadTable(filename);
+  data_row=csv.getRowCount();//this is image_number + 1
+  
+  println("R:"+data_row);
+  i=data_row-1;
   //Loadimages();//this use about IMAGES_NUM/10 second
-  pimage=loadImage(GetImgName(0));
+  pimage=loadImage(GetImgName(data_row-1));
   for(int j=0;j<IMAGES_NUM+1;j++){
     csvset[j]=new CSVset();
   }
   println("length="+csvset.length);
+  println("first line is..."+csv.getInt(0,0)+","+csv.getInt(0,1)+","+csv.getInt(0,2));
+  for(int j=0;j<data_row;j++){
+    csvset[j].serial_num=j;
+    csvset[j].x=csv.getInt(j,1);
+    csvset[j].y=csv.getInt(j,2);
+    println(csvset[j].serial_num+","+csvset[j].x+","+csvset[j].y);
+  }
+  i=data_row;
 }
 
 void draw() {
@@ -104,9 +121,14 @@ void mouseClicked() {
 }
 
 void PrintCSV() {
+  output=createWriter("positions.csv");
   println("Fin!");
   for (int j=0; j<IMAGES_NUM+1; j++) {
     if (csvset[j].serial_num==-1) {
+      output.close();
+      exit();
+    }
+    if(csvset[j].x==0&&csvset[j].y==0){
       output.close();
       exit();
     }
