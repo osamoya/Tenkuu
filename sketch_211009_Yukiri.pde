@@ -109,7 +109,6 @@ void keyReleased() {
 
 
 void mouseClicked() {
-  ellipse(mouseX, mouseY, r, r);
   if(i>IMAGES_NUM)return;
   csvset[i].x=mouseX;
   csvset[i].y=mouseY;
