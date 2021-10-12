@@ -4,7 +4,7 @@ final int IMAGES_NUM=3990;//number of images(3990)
 final int RATIO=2;//view percent
 int i=0;
 int r=10;//the radius of circle to display
-
+color cross_c=#FF0000;
 Table csv;
 int data_row;//=RETSU.
 
@@ -72,10 +72,8 @@ void draw() {
   //image(imgset[i].img, 0, 0, width, height);
   image(pimage,0,0,width,height);
 
-  if (csvset[i].serial_num!=-1) {
-    fill(0, 0, 0);
-    ellipse(csvset[i].x, csvset[i].y, r, r);
-  }
+  DispCross();
+  
   fill(0);
   text(GetImgName(i), 50, 50);
 }
@@ -111,7 +109,6 @@ void keyReleased() {
 
 
 void mouseClicked() {
-  ellipse(mouseX, mouseY, r, r);
   if(i>IMAGES_NUM)return;
   csvset[i].x=mouseX;
   csvset[i].y=mouseY;
@@ -173,4 +170,16 @@ void Loadimage(int n) {
   imgset[n]=new IMGset();
   imgset[n].serial_num=1;
   imgset[n].img=loadImage(GetImgName(n));
+}
+void DispCross(){
+  int x=csvset[i].x;
+  int y=csvset[i].y;
+  if(x==0&&y==0){
+    return;
+  }
+  stroke(255,0,0);
+  //rect(x,y,10,30);
+  //rect(x,y,30,10);
+  line(x-r,y  ,x+r,y  );
+  line(x  ,y-r,x  ,y+r);
 }
