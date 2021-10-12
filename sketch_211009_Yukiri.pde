@@ -43,8 +43,8 @@ void setup() {
   println("first line is..."+csv.getInt(0,0)+","+csv.getInt(0,1)+","+csv.getInt(0,2));
   for(int j=0;j<data_row;j++){
     csvset[j].serial_num=j;
-    csvset[j].x=csv.getInt(j,1);
-    csvset[j].y=csv.getInt(j,2);
+    csvset[j].x=csv.getInt(j,1)/2;
+    csvset[j].y=csv.getInt(j,2)/2;
     println(csvset[j].serial_num+","+csvset[j].x+","+csvset[j].y);
   }
   i=data_row;
