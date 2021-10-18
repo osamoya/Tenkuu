@@ -105,6 +105,9 @@ void keyReleased() {
   println("i="+i);
   if (i<=0)i=0;
   if (i>IMAGES_NUM)i=IMAGES_NUM;
+  pimage=loadImage(GetImgName(i));
+  csvset[i].serial_num=i;  
+  //image(pimage,0,0,width,height);
 }
 
 
@@ -115,6 +118,7 @@ void mouseClicked() {
   //imgset[i].check=true;
   csvset[i].serial_num=i;
   i++;
+  pimage=loadImage(GetImgName(i));
 }
 
 void PrintCSV() {
